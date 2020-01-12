@@ -10,7 +10,7 @@ import kotlin.reflect.KProperty
  */
 
 
-class Preferences<T>(val context: Context, val name: String, val default: T, val prefName: String = "default"): ReadWriteProperty<Any?, T>{
+class Preferences<T>(val context: Context, val name: String, val default: T, val prefName: String = "default_sp"): ReadWriteProperty<Any?, T>{
 
 
     private val prefs by lazy {
@@ -31,6 +31,7 @@ class Preferences<T>(val context: Context, val name: String, val default: T, val
             is Long -> prefs.getLong(key, default)
             is Int -> prefs.getInt(key, default)
             is Boolean -> prefs.getBoolean(key, default)
+            is String -> prefs.getString(key, default)
             else -> throw IllegalArgumentException("Unsupport Type")
         } as T
     }
@@ -41,9 +42,10 @@ class Preferences<T>(val context: Context, val name: String, val default: T, val
                 is Long -> putLong(key, value)
                 is Int -> putInt(key, value)
                 is Boolean -> putBoolean(key, value)
+                is String -> putString(key, value)
                 else -> throw IllegalArgumentException("Unsupport Type")
             }
-        }
+        }.apply()
     }
 
 
