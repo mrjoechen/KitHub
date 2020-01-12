@@ -1,16 +1,15 @@
 package com.chenqiao.common
 
 
-sealed class BooleanExt
+sealed class BooleanExt<out T>
 
-object Otherwise: BooleanExt()
-class WithData: BooleanExt()
+object Otherwise : BooleanExt<Nothing>()
+class WithData<T>(val data: T) : BooleanExt<T>()
 
-inline fun Boolean.yes(block: () -> Unit) =
-    when{
+inline fun <T> Boolean.yes(block: () -> T) =
+    when {
         this -> {
-            block()
-            WithData()
+            WithData(block())
         }
         else -> {
             Otherwise
@@ -18,8 +17,29 @@ inline fun Boolean.yes(block: () -> Unit) =
     }
 
 
-fun BooleanExt.otherwise(block: () -> Unit) =
-    when(this){
-        is Otherwise -> block()
-        is WithData -> Unit
+inline fun <T> Boolean.no(block: () -> T) =
+    when {
+        this -> {
+            Otherwise
+        }
+        else -> {
+            WithData(block())
+        }
     }
+
+
+inline fun <T> BooleanExt<T>.otherwise(block: () -> T): T =
+    when (this) {
+        is Otherwise -> block()
+        is WithData -> this.data
+    }
+
+
+fun main() {
+    val result = true.yes {
+        1
+    }.otherwise {
+        2
+    }
+
+}
