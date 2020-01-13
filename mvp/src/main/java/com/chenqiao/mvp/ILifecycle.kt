@@ -25,7 +25,7 @@ interface ILifecycle{
 
     fun onStop()
 
-    fun onResuem()
+    fun onResume()
 
     fun onPause()
 
