@@ -36,10 +36,10 @@ inline fun <T> BooleanExt<T>.otherwise(block: () -> T): T =
 
 
 fun main() {
-    val result = true.yes {
-        1
-    }.otherwise {
-        2
-    }
+//    val result = true.yes {
+//        1
+//    }.otherwise {
+//        2
+//    }
 
 }

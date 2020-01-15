@@ -3,6 +3,7 @@ package com.chenqiao.kithub
 import android.app.Application
 import android.content.ContextWrapper
 import android.util.Log
+import kotlinx.coroutines.launch
 
 /**
  * Created by chenqiao on 2020-01-13.
@@ -29,6 +30,7 @@ class App : Application() {
         Log.d(TAG, Settings.email)
 
         Log.d(TAG, Settings.password)
+
 
     }
 
