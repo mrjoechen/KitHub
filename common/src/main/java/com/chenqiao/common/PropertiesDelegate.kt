@@ -14,7 +14,6 @@ import kotlin.reflect.full.isSuperclassOf
  * e-mail : mrjctech@gmail.com
  */
 
-
 class PropertiesDelegate(private val path: String) {
 
     protected lateinit var url: URL
