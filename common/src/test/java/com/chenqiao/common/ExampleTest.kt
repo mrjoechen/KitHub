@@ -1,5 +1,7 @@
 package com.chenqiao.common
 
+import com.chenqiao.common.ext.otherwise
+import com.chenqiao.common.ext.yes
 import org.junit.Assert
 import org.junit.Test
 

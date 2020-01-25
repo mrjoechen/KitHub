@@ -1,4 +1,4 @@
-package com.chenqiao.common
+package com.chenqiao.common.ext
 
 
 sealed class BooleanExt<out T>

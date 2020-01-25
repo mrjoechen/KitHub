@@ -1,4 +1,4 @@
-package com.chenqiao.common
+package com.chenqiao.common.sp
 
 import android.content.Context
 import kotlin.properties.ReadWriteProperty

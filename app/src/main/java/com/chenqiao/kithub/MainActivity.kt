@@ -3,7 +3,7 @@ package com.chenqiao.kithub
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.TextView
-import com.chenqiao.common.log
+import com.chenqiao.common.ext.log
 
 class MainActivity : AppCompatActivity() {
 
@@ -17,5 +17,6 @@ class MainActivity : AppCompatActivity() {
         textView.setOnClickListener{
             log("test")
         }
+
     }
 }
