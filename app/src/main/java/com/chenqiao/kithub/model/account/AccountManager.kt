@@ -10,6 +10,9 @@ import com.chenqiao.kithub.utils.pref
 import com.google.gson.Gson
 import retrofit2.HttpException
 import rx.Observable
+import rx.Scheduler
+import rx.android.schedulers.AndroidSchedulers
+import rx.schedulers.Schedulers
 
 /**
  * Created by chenqiao on 2020-01-25.
@@ -61,6 +64,8 @@ object AccountManager {
 
     fun login() =
         AuthService.createAuthorization(AuthorizationReq())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribeOn(Schedulers.io())
             .doOnNext {
                 if (it.token.isEmpty()) throw AccountException(it)
             }
@@ -84,6 +89,8 @@ object AccountManager {
             }
 
     fun logout() = AuthService.deleteAuthorization(authId)
+        .observeOn(AndroidSchedulers.mainThread())
+        .subscribeOn(Schedulers.io())
         .doOnNext {
             if (it.isSuccessful) {
                 authId = -1
