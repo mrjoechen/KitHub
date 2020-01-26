@@ -21,8 +21,8 @@ object Configs {
         val SCOPES = listOf("user", "repo", "notifications", "gist", "admin:org")
         const val clientId = "707910e149b128f7045f"
         const val clientSecret = "5a4e192db85effba15e8efba99f85666e119f0eb"
-        const val note = "kotliner.cn"
-        const val noteUrl = "http://www.kotliner.cn"
+        const val note = "mrjoechen.cn"
+        const val noteUrl = "http://mrjoechen.cn"
 
         val fingerPrint by lazy {
             (AppContext.deviceId + clientId).also { logger.info("fingerPrint: "+it) }

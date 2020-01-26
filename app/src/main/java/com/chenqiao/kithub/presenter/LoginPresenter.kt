@@ -1,12 +1,16 @@
 package com.chenqiao.kithub.presenter
 
+import android.os.Build
+import com.chenqiao.kithub.BuildConfig
 import com.chenqiao.kithub.model.account.AccountManager
+import com.chenqiao.kithub.view.LoginActivity
+import com.chenqiao.mvp.impl.BasePresenter
 
 /**
  * Created by chenqiao on 2020-01-27.
  * e-mail : mrjctech@gmail.com
  */
-class LoginPresenter {
+class LoginPresenter: BasePresenter<LoginActivity>() {
 
     fun doLogin(userName: String, password: String): Boolean{
 
@@ -15,17 +19,25 @@ class LoginPresenter {
         AccountManager.login()
             .subscribe()
 
-        return false
+        return true
     }
 
     fun checkUsername(userName: String): Boolean{
 
-        return false
+        return true
     }
 
     fun checkPassword(password: String): Boolean{
 
-        return false
+        return true
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        if (BuildConfig.DEBUG){
+            view.onDataInit(BuildConfig.testUserName, BuildConfig.testPassword)
+        }
     }
 
 

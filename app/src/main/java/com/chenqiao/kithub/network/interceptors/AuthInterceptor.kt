@@ -24,8 +24,9 @@ class AuthInterceptor: Interceptor {
                                 userCredentials.toByteArray(),
                                 Base64.DEFAULT
                             )
-                        )
+                        ).trim()
 
+                        //Basic bXJqb2VjaGVuQHFxLmNvbSA6Y2hlbnFpYW8xOTk0MTEwNA==
                         header("Authorization", auth)
                     }
 

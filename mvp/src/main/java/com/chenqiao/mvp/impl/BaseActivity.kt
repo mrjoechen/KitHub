@@ -2,6 +2,7 @@ package com.chenqiao.mvp.impl
 
 import android.app.Activity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.chenqiao.mvp.IMvpView
 import com.chenqiao.mvp.IPresenter
 import java.lang.reflect.ParameterizedType
@@ -89,12 +90,15 @@ abstract class BaseActivity<out P : BasePresenter<BaseActivity<P>>> : IMvpView<P
         super.onDestroy()
     }
 
+    override fun onViewStateRestored(savedInstanceState: Bundle?) {}
+
+
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
         presenter.onSaveInstanceState(outState)
     }
 
-    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
+    override fun onRestoreInstanceState(savedInstanceState: Bundle?) {
         super.onRestoreInstanceState(savedInstanceState)
         onViewStateRestored(savedInstanceState)
         presenter.onViewStateRestored(savedInstanceState)

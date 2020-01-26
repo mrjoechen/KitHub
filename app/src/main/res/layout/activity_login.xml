@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.LoginActivity">
+    tools:context=".view.LoginActivity"
+    android:orientation="vertical">
 
     <include layout="@layout/app_bar_simple"/>
 
@@ -38,7 +39,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <android.support.design.widget.TextInputLayout
+                <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
@@ -50,11 +51,11 @@
                         android:imeOptions="actionNext"
                         android:inputType="text"
                         android:maxLines="1"
-                        android:textColor="?android:textColorPrimaryInverse" />
+                        android:textColor="?android:textColorPrimary"/>
 
-                </android.support.design.widget.TextInputLayout>
+                </com.google.android.material.textfield.TextInputLayout>
 
-                <android.support.design.widget.TextInputLayout
+                <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
@@ -69,7 +70,7 @@
                         android:maxLines="1"
                         android:textColor="?android:textColorPrimaryInverse" />
 
-                </android.support.design.widget.TextInputLayout>
+                </com.google.android.material.textfield.TextInputLayout>
 
                 <Button
                     android:id="@+id/signInButton"

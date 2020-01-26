@@ -4,19 +4,23 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <android.support.design.widget.AppBarLayout
+    <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <android.support.v7.widget.Toolbar
+        <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?android:attr/actionBarSize"
+            app:title="KitHub"
+            app:subtitle="A GitHub client build by Kotlin !"
+            app:titleTextColor="@color/textColorPrimary"
+            app:subtitleTextColor="@color/textColorPrimary"
             app:layout_scrollFlags="scroll|enterAlways"
             app:layout_collapseMode="pin">
 
-        </android.support.v7.widget.Toolbar>
+        </androidx.appcompat.widget.Toolbar>
 
-    </android.support.design.widget.AppBarLayout>
+    </com.google.android.material.appbar.AppBarLayout>
 
 </merge>

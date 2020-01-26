@@ -5,18 +5,26 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlin-noarg'
 
+apply from: "./local.gradle"
+
 android {
     compileSdkVersion 28
     defaultConfig {
         applicationId "com.chenqiao.kithub"
         minSdkVersion 21
-        targetSdkVersion 28
+        targetSdkVersion 26
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
+        debug{
+            buildConfigField("String", "testUserName", '"'+project.username+'"')
+            buildConfigField("String", "testPassword", '"'+project.password+'"')
+        }
         release {
+            buildConfigField("String", "testUserName", '""')
+            buildConfigField("String", "testPassword", '""')
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
@@ -33,10 +41,11 @@ dependencies {
     implementation"org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
 
 
+    implementation "com.google.android.material:material:1.2.0-alpha04"
 
-    implementation "com.android.support:appcompat-v7:$support_version"
-    implementation "com.android.support:design:$support_version"
-    implementation "com.android.support:cardview-v7:$support_version"
+//    implementation "com.android.support:appcompat-v7:$support_version"
+//    implementation "com.android.support:design:$support_version"
+//    implementation "com.android.support:cardview-v7:$support_version"
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.0'
