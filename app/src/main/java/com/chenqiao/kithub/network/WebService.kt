@@ -2,6 +2,8 @@ package com.chenqiao.kithub.network
 
 import com.chenqiao.common.ext.ensureDir
 import com.chenqiao.kithub.AppContext
+import com.chenqiao.kithub.network.interceptors.AcceptInterceptor
+import com.chenqiao.kithub.network.interceptors.AuthInterceptor
 import okhttp3.Cache
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -35,6 +37,8 @@ val retrofit by lazy {
             .writeTimeout(60, TimeUnit.SECONDS)
             .cache(Cache(cacheFile, 1024 * 1024 *1024))
             .addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
+            .addInterceptor(AuthInterceptor())
+            .addInterceptor(AcceptInterceptor())
             .build())
         .baseUrl(BASE_URL)
         .build()
