@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="DetailItemView">
+        <attr name="item_title" format="string" />
+        <attr name="item_content" format="string" />
+        <attr name="item_icon" format="reference" />
+        <attr name="item_op_icon" format="reference" />
+    </declare-styleable>
+
+    <declare-styleable name="AppBarLayoutBehavior">
+        <attr name="targetTop" format="dimension"/>
+        <attr name="targetLeft" format="dimension"/>
+        <attr name="originalLeft" format="dimension"/>
+        <attr name="originalTop" format="dimension"/>
+    </declare-styleable>
+
+    <attr name="sideBarBackground" format="reference"/>
+
+    <declare-styleable name="AvatarImageView"><attr format="reference|float" name="aiv_TextSizeRatio"/><attr format="reference|float" name="aiv_TextMaskRatio"/><attr format="reference|color" name="aiv_BoarderColor"/><attr format="reference|color" name="aiv_TextColor"/><attr format="reference|dimension" name="aiv_BoarderWidth"/><attr format="reference|boolean" name="aiv_ShowBoarder"/><attr format="reference|dimension" name="aiv_CornerRadius"/></declare-styleable>
+
+</resources>

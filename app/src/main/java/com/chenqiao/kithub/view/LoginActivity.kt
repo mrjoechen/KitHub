@@ -1,10 +1,9 @@
 package com.chenqiao.kithub.view
 
+import android.content.Intent
 import android.os.Bundle
-import android.view.View
 import android.widget.*
-import androidx.appcompat.app.AppCompatActivity
-import com.chenqiao.common.ext.log
+import com.bennyhuo.tieguanyin.annotations.Builder
 import com.chenqiao.common.ext.otherwise
 import com.chenqiao.common.ext.yes
 import com.chenqiao.kithub.R
@@ -12,6 +11,7 @@ import com.chenqiao.kithub.presenter.LoginPresenter
 import com.chenqiao.kithub.utils.hideSoftInput
 import com.chenqiao.mvp.impl.BaseActivity
 import kotlinx.android.synthetic.main.activity_login.*
+import kotlinx.android.synthetic.main.app_bar_simple.*
 import org.jetbrains.anko.toast
 import kotlin.math.sin
 
@@ -19,31 +19,36 @@ import kotlin.math.sin
  * Created by chenqiao on 2020-01-27.
  * e-mail : mrjctech@gmail.com
  */
+
+@Builder(flags = [Intent.FLAG_ACTIVITY_NO_HISTORY])
 class LoginActivity : BaseActivity<LoginPresenter>() {
 
-    private val signInButton by lazy {
-        findViewById<Button>(R.id.signInButton)
-    }
 
-    private val userName by lazy {
-        findViewById<AutoCompleteTextView>(R.id.username)
-    }
-
-    private val password by lazy {
-        findViewById<EditText>(R.id.password)
-    }
-
-    private val loginForm by lazy {
-        findViewById<View>(R.id.loginForm)
-    }
-
-    private val loginProgress by lazy {
-        findViewById<ProgressBar>(R.id.loginProgress)
-    }
+    //Kotlin Android Exception 可以自动生成 （导入 import kotlinx.android.synthetic.main.activity_login.*）
+//    private val signInButton by lazy {
+//        findViewById<Button>(R.id.signInButton)
+//    }
+//
+//    private val userName by lazy {
+//        findViewById<AutoCompleteTextView>(R.id.username)
+//    }
+//
+//    private val password by lazy {
+//        findViewById<EditText>(R.id.password)
+//    }
+//
+//    private val loginForm by lazy {
+//        findViewById<View>(R.id.loginForm)
+//    }
+//
+//    private val loginProgress by lazy {
+//        findViewById<ProgressBar>(R.id.loginProgress)
+//    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+        setSupportActionBar(toolbar)
 
         signInButton.setOnClickListener {
             presenter.checkUsername(username.text.toString())
@@ -51,7 +56,7 @@ class LoginActivity : BaseActivity<LoginPresenter>() {
                     presenter.checkPassword(password.text.toString())
                         .yes {
                             hideSoftInput()
-                            presenter.doLogin(userName.text.toString(), password.text.toString())
+                            presenter.doLogin(username.text.toString(), password.text.toString())
                         }
                         .otherwise {
                             showTips(password, "密码不合法！")

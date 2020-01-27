@@ -1,6 +1,5 @@
 package com.chenqiao.mvp.impl
 
-import android.app.Activity
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.chenqiao.mvp.IMvpView
@@ -16,7 +15,7 @@ import kotlin.reflect.jvm.jvmErasure
  * Created by chenqiao on 2020-01-25.
  * e-mail : mrjctech@gmail.com
  */
-abstract class BaseActivity<out P : BasePresenter<BaseActivity<P>>> : IMvpView<P>, Activity() {
+abstract class BaseActivity<out P : BasePresenter<BaseActivity<P>>> : IMvpView<P>, AppCompatActivity() {
 
     override val presenter: P
 

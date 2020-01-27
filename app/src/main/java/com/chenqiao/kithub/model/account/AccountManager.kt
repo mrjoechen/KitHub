@@ -64,8 +64,6 @@ object AccountManager {
 
     fun login() =
         AuthService.createAuthorization(AuthorizationReq())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribeOn(Schedulers.io())
             .doOnNext {
                 if (it.token.isEmpty()) throw AccountException(it)
             }
@@ -89,8 +87,6 @@ object AccountManager {
             }
 
     fun logout() = AuthService.deleteAuthorization(authId)
-        .observeOn(AndroidSchedulers.mainThread())
-        .subscribeOn(Schedulers.io())
         .doOnNext {
             if (it.isSuccessful) {
                 authId = -1

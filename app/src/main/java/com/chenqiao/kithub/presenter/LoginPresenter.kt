@@ -37,6 +37,8 @@ class LoginPresenter: BasePresenter<LoginActivity>() {
 
         if (BuildConfig.DEBUG){
             view.onDataInit(BuildConfig.testUserName, BuildConfig.testPassword)
+        }else{
+            view.onDataInit(AccountManager.username, AccountManager.username)
         }
     }
 

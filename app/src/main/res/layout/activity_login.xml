@@ -51,7 +51,7 @@
                         android:imeOptions="actionNext"
                         android:inputType="text"
                         android:maxLines="1"
-                        android:textColor="?android:textColorPrimary"/>
+                        android:textColor="?android:textColorPrimaryInverse"/>
 
                 </com.google.android.material.textfield.TextInputLayout>
 

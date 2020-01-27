@@ -3,7 +3,7 @@ package com.chenqiao.kithub
 import android.app.Application
 import android.content.ContextWrapper
 import android.util.Log
-import kotlinx.coroutines.launch
+import com.bennyhuo.tieguanyin.runtime.core.ActivityBuilder
 
 /**
  * Created by chenqiao on 2020-01-13.
@@ -21,6 +21,7 @@ class App : Application() {
         super.onCreate()
 
         INSTANCE = this
+        ActivityBuilder.INSTANCE.init(this)
 
 
         Settings.email = "chenqiao1104@vip.qq.com"
@@ -30,7 +31,6 @@ class App : Application() {
         Log.d(TAG, Settings.email)
 
         Log.d(TAG, Settings.password)
-
 
     }
 

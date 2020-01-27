@@ -13,7 +13,7 @@
             android:layout_width="match_parent"
             android:layout_height="?android:attr/actionBarSize"
             app:title="KitHub"
-            app:subtitle="A GitHub client build by Kotlin !"
+            app:subtitle="A GitHub client build by Kotlin"
             app:titleTextColor="@color/textColorPrimary"
             app:subtitleTextColor="@color/textColorPrimary"
             app:layout_scrollFlags="scroll|enterAlways"
