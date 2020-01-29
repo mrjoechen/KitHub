@@ -19,6 +19,7 @@ import com.chenqiao.kithub.network.entities.User
 import com.chenqiao.kithub.utils.doOnLayoutAvailable
 import com.chenqiao.kithub.utils.loadWithGlide
 import com.chenqiao.kithub.view.LoginActivity
+import com.chenqiao.kithub.view.startLoginActivity
 import com.google.android.material.navigation.NavigationView
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
@@ -58,8 +59,9 @@ class MainActivity : AppCompatActivity(), OnAccountStateChangeListener{
         navigationView.doOnLayoutAvailable {
             navigationHeader.setOnClickListener {
                 AccountManager.isLoggedIn().no {
-                    startActivity(Intent(this@MainActivity, LoginActivity::class.java))
+//                    startActivity(Intent(this@MainActivity, LoginActivity::class.java))
 
+                    startLoginActivity()
                 }.otherwise {
                     AccountManager.logout()
                         .subscribe({

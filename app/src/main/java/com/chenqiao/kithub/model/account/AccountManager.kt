@@ -19,6 +19,7 @@ import rx.schedulers.Schedulers
  * e-mail : mrjctech@gmail.com
  */
 interface OnAccountStateChangeListener {
+
     fun onLogin(user: User)
 
     fun onLogout()
@@ -40,7 +41,7 @@ object AccountManager {
             return field
         }
         set(value) {
-            if(value == null){
+            if (value == null) {
                 userJson = ""
             } else {
                 userJson = Gson().toJson(value)
