@@ -24,6 +24,9 @@ import java.util.concurrent.TimeUnit
 
 private const val BASE_URL = "https://api.github.com"
 
+//通过一个 QueryParameter 让 CacheInterceptor 添加 no-cache
+const val FORCE_NETWORK = "forceNetwork"
+
 private val cacheFile by lazy {
     File(AppContext.cacheDir, "WebServiceApi").apply {
         ensureDir()
