@@ -1,8 +1,7 @@
-package com.bennyhuo.github.network.entities
+package com.chenqiao.kithub.network.entities
 
 import android.os.Parcelable
 import com.chenqiao.common.anno.PoKo
-import com.chenqiao.kithub.network.entities.BasicUser
 import kotlinx.android.parcel.Parcelize
 
 @PoKo

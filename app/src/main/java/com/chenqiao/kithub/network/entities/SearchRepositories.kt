@@ -1,4 +1,4 @@
-package com.bennyhuo.github.network.entities
+package com.chenqiao.kithub.network.entities
 
 import com.chenqiao.common.anno.PoKo
 import retrofit2.adapter.rxjava.PagingWrapper

@@ -1,8 +1,9 @@
 package com.chenqiao.kithub.network.services
 
-import com.bennyhuo.github.network.entities.Repository
-import com.bennyhuo.github.network.entities.SearchRepositories
+import com.chenqiao.kithub.network.entities.SearchRepositories
+
 import com.chenqiao.kithub.network.FORCE_NETWORK
+import com.chenqiao.kithub.network.entities.Repository
 import com.chenqiao.kithub.network.retrofit
 import retrofit2.adapter.rxjava.GitHubPaging
 import retrofit2.http.GET
@@ -27,4 +28,4 @@ interface RepositoryApi {
     fun getRepository(@Path("owner") owner: String, @Path("repo") repo: String, @Query(FORCE_NETWORK) forceNetwork: Boolean = false): Observable<Repository>
 }
 
-object RepositoryService : RepositoryApi by retrofit.create(RepositoryService::class.java)
+object RepositoryService : RepositoryApi by retrofit.create(RepositoryApi::class.java)

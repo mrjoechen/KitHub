@@ -26,6 +26,13 @@ abstract class CommonListAdapter<T> (@LayoutRes val resId: Int) : RecyclerView.A
         setHasStableIds(true)
     }
 
+    private var oldPosition = -1
+
+
+    override fun getItemId(position: Int): Long {
+        return position.toLong()
+    }
+
     val data = AdapterList<T>(this)
 
 
@@ -59,7 +66,12 @@ abstract class CommonListAdapter<T> (@LayoutRes val resId: Int) : RecyclerView.A
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
 
+        onBindData(holder, data[position])
+    }
 
+
+    override fun getItemCount(): Int {
+        return data.size
     }
 
 

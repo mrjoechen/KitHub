@@ -35,30 +35,30 @@ inline fun NavigationView.doOnLayoutAvailable(crossinline block: () -> Unit) {
 /**
  * 选择指定的菜单，并执行相应的操作
  */
-//@SuppressLint("RestrictedApi")
-//fun NavigationView.selectItem(@IdRes resId: Int){
-//    doOnLayoutAvailable {
-//        logger.debug("select Item: ${NavViewItem[resId].title}")
-//        setCheckedItem(resId)
-//        (menu.findItem(resId) as MenuItemImpl)()
-//    }
-//}
+@SuppressLint("RestrictedApi")
+fun NavigationView.selectItem(@IdRes resId: Int){
+    doOnLayoutAvailable {
+        logger.debug("select Item: ${NavViewItem[resId].title}")
+        setCheckedItem(resId)
+        (menu.findItem(resId) as MenuItemImpl)()
+    }
+}
 
-//inline fun DrawerLayout.afterClosed(crossinline block: () -> Unit){
-//    if(isDrawerOpen(GravityCompat.START)) {
-//        closeDrawer(GravityCompat.START)
-//        addDrawerListener(
-//                object : DrawerLayout.DrawerListener {
-//                    override fun onDrawerStateChanged(newState: Int) = Unit
-//                    override fun onDrawerSlide(drawerView: View, slideOffset: Float) = Unit
-//                    override fun onDrawerOpened(drawerView: View) = Unit
-//
-//                    override fun onDrawerClosed(drawerView: View) {
-//                        removeDrawerListener(this)
-//                        block()
-//                    }
-//                })
-//    } else {
-//        block()
-//    }
-//}
+inline fun DrawerLayout.afterClosed(crossinline block: () -> Unit){
+    if(isDrawerOpen(GravityCompat.START)) {
+        closeDrawer(GravityCompat.START)
+        addDrawerListener(
+                object : DrawerLayout.DrawerListener {
+                    override fun onDrawerStateChanged(newState: Int) = Unit
+                    override fun onDrawerSlide(drawerView: View, slideOffset: Float) = Unit
+                    override fun onDrawerOpened(drawerView: View) = Unit
+
+                    override fun onDrawerClosed(drawerView: View) {
+                        removeDrawerListener(this)
+                        block()
+                    }
+                })
+    } else {
+        block()
+    }
+}

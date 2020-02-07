@@ -12,8 +12,6 @@ import com.chenqiao.kithub.utils.hideSoftInput
 import com.chenqiao.mvp.impl.BaseActivity
 import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.app_bar_simple.*
-import org.jetbrains.anko.toast
-import kotlin.math.sin
 
 /**
  * Created by chenqiao on 2020-01-27.
@@ -85,12 +83,12 @@ class LoginActivity : BaseActivity<LoginPresenter>() {
 
     fun onLoginError(e: Throwable){
         e.printStackTrace()
-        toast("登录失败")
+//        toast("登录失败")
         showProgress(false)
     }
 
     fun onLoginSuccess(){
-        toast("登录成功")
+//        toast("登录成功")
         showProgress(false)
     }
 

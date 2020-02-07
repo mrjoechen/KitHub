@@ -3,33 +3,37 @@ package com.chenqiao.kithub
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
-import android.widget.TextView
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.GravityCompat
-import androidx.core.view.ViewCompat
 import com.bennyhuo.tieguanyin.annotations.Builder
-import com.chenqiao.common.ext.log
+
 import com.chenqiao.common.ext.no
 import com.chenqiao.common.ext.otherwise
 import com.chenqiao.common.ext.yes
 import com.chenqiao.kithub.model.account.AccountManager
 import com.chenqiao.kithub.model.account.OnAccountStateChangeListener
 import com.chenqiao.kithub.network.entities.User
-import com.chenqiao.kithub.utils.doOnLayoutAvailable
-import com.chenqiao.kithub.utils.loadWithGlide
-import com.chenqiao.kithub.view.LoginActivity
+import com.chenqiao.kithub.utils.*
+import com.chenqiao.kithub.view.config.NavViewItem
 import com.chenqiao.kithub.view.startLoginActivity
-import com.google.android.material.navigation.NavigationView
+import com.chenqiao.kithub.widget.ActionBarController
+import com.chenqiao.kithub.widget.NavigationController
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 import kotlinx.android.synthetic.main.nav_header_main.*
-import org.jetbrains.anko.imageResource
-import org.jetbrains.anko.sdk15.listeners.onClick
-import org.jetbrains.anko.toast
+
 
 @Builder(flags = [Intent.FLAG_ACTIVITY_CLEAR_TOP])
 class MainActivity : AppCompatActivity(), OnAccountStateChangeListener{
+
+
+    val actionBarController by lazy {
+        ActionBarController(this)
+    }
+
+    private val navigationController by lazy{
+        NavigationController(navigationView, ::onNavItemChanged, ::handleNavigationHeaderClickEvent)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,28 +55,16 @@ class MainActivity : AppCompatActivity(), OnAccountStateChangeListener{
     }
 
     private fun initNavigationView(){
-        AccountManager.currentUser?.let { updateNavigationView(it) }?: clearNavigationView()
-        initNavigationViewEvent()
-    }
-
-    private fun initNavigationViewEvent(){
-        navigationView.doOnLayoutAvailable {
-            navigationHeader.setOnClickListener {
-                AccountManager.isLoggedIn().no {
-//                    startActivity(Intent(this@MainActivity, LoginActivity::class.java))
-
-                    startLoginActivity()
-                }.otherwise {
-                    AccountManager.logout()
-                        .subscribe({
-                            toast("注销成功")
-                        }, {
-                            it.printStackTrace()
-                        })
-                }
+        AccountManager.isLoggedIn()
+            .yes {
+                navigationController.useLoginLayout()
             }
-        }
+            .otherwise {
+                navigationController.useNoLoginLayout()
+            }
+//        navigationController.selectProperItem()
     }
+
 
 
     private fun updateNavigationView(user: User){
@@ -87,7 +79,7 @@ class MainActivity : AppCompatActivity(), OnAccountStateChangeListener{
         navigationView.doOnLayoutAvailable {
             usernameView.text = "请登录"
             emailView.text = ""
-            avatarView.imageResource = R.drawable.ic_github
+            avatarView.setImageResource(R.drawable.ic_github)
         }
     }
 
@@ -105,6 +97,27 @@ class MainActivity : AppCompatActivity(), OnAccountStateChangeListener{
         }else{
             super.onBackPressed()
         }
+    }
+
+    private fun onNavItemChanged(navViewItem: NavViewItem){
+        drawer_layout.afterClosed {
+            showFragment(R.id.fragmentContainer, navViewItem.fragmentClass, navViewItem.arguements)
+            title = navViewItem.title
+        }
+    }
+
+    private fun handleNavigationHeaderClickEvent(){
+        AccountManager.isLoggedIn().no {
+            startLoginActivity()
+        }.otherwise {
+            AccountManager.logout()
+                .subscribe({
+                    toast("注销成功")
+                }, {
+                    it.printStackTrace()
+                })
+        }
+
     }
 
 
