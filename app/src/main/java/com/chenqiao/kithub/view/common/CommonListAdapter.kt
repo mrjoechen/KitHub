@@ -44,7 +44,7 @@ abstract class CommonListAdapter<T> (@LayoutRes val resId: Int) : RecyclerView.A
         itemView.setOnTouchListener { v, event ->
             when(event.action){
 
-                MotionEvent.ACTION_DOWN -> ViewCompat.animate(itemView).scaleX(1.03f).scaleY(1.03f).translationZ(itemView.dip(10).toFloat()).duration = CARD_TAP_DURATION
+                MotionEvent.ACTION_DOWN -> ViewCompat.animate(itemView).scaleX(1.02f).scaleY(1.02f).translationZ(itemView.dip(10).toFloat()).duration = CARD_TAP_DURATION
                 MotionEvent.ACTION_UP,
                 MotionEvent.ACTION_CANCEL -> {
                     ViewCompat.animate(itemView).scaleX(1f).scaleY(1f).translationZ(itemView.dip(0).toFloat()).duration = CARD_TAP_DURATION
