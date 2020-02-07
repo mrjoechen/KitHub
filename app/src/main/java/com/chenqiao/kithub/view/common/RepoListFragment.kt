@@ -1,13 +1,12 @@
-package com.chenqiao.kithub.view.fragment
+package com.chenqiao.kithub.view.common
 
 import com.bennyhuo.tieguanyin.annotations.Builder
 import com.bennyhuo.tieguanyin.annotations.Optional
 import com.chenqiao.kithub.model.account.AccountManager
 import com.chenqiao.kithub.network.entities.Repository
 import com.chenqiao.kithub.network.entities.User
-import com.chenqiao.kithub.view.common.CommonListFragment
-import com.chenqiao.kithub.view.common.RepoListAdapter
 import com.chenqiao.kithub.view.presenter.RepoListPresenter
+import com.chenqiao.kithub.view.presenter.RepoStarListPresenter
 
 
 /**
@@ -22,4 +21,15 @@ class RepoListFragment: CommonListFragment<Repository, RepoListPresenter>(){
     var user: User? = AccountManager.currentUser
 
     override val adapter = RepoListAdapter()
+
+}
+
+@Builder
+class RepoStarListFragment: CommonListFragment<Repository, RepoStarListPresenter>(){
+
+    //    @Optional
+    var user: User? = AccountManager.currentUser
+
+    override val adapter = RepoListAdapter()
+
 }

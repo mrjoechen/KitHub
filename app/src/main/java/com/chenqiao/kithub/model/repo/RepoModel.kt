@@ -10,14 +10,25 @@ import retrofit2.adapter.rxjava.GitHubPaging
 import rx.Observable
 import java.util.*
 
-class RepoListPage(val owner: User?): ListPage<Repository>(){
+class RepoListPage(val owner: User?, val type: RepoType): ListPage<Repository>(){
+
     override fun getData(page: Int): Observable<GitHubPaging<Repository>> {
 
         return if(owner == null){
             RepositoryService.allRepositories(page, "pushed:<" + Date().format("yyyy-MM-dd")).map { it.paging }
         } else {
-            RepositoryService.listRepositoriesOfUser(owner.login, page)
+            when(type){
+                RepoType.REPO -> RepositoryService.listRepositoriesOfUser(owner.login, page)
+                RepoType.STAR -> RepositoryService.listStarRepository(owner.login, page)
+
+                else -> RepositoryService.listRepositoriesOfUser(owner.login, page)
+            }
         }
     }
 
+}
+
+enum class RepoType{
+    REPO,
+    STAR
 }

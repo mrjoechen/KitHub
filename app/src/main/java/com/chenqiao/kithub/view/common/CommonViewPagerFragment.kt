@@ -42,14 +42,12 @@ abstract class CommonViewPagerFragment: Fragment(), ViewPagerFragmentConfig, OnA
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val inflate = inflater.inflate(R.layout.fragment_viewpager_common, container, false)
-        viewPager.adapter = viewPageAdapter
-        return inflate
+        return inflater.inflate(R.layout.fragment_viewpager_common, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        viewPager.adapter = viewPageAdapter
         (activity as MainActivity).actionBarController.setupWithViewPager(viewPager)
         viewPageAdapter.fragmentPages.addAll(
             if(AccountManager.isLoggedIn()){

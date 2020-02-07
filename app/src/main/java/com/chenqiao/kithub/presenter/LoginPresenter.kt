@@ -16,8 +16,14 @@ class LoginPresenter: BasePresenter<LoginActivity>() {
 
         AccountManager.username = userName
         AccountManager.passwd = password
+        view.onLoginStart()
+
         AccountManager.login()
-            .subscribe()
+            .subscribe({
+                view.onLoginSuccess()
+            }, {
+                view.onLoginError(it)
+            })
 
         return true
     }
