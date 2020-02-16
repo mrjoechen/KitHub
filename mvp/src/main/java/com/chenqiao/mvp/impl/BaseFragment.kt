@@ -1,6 +1,7 @@
 package com.chenqiao.mvp.impl
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import com.chenqiao.mvp.IMvpView
 import com.chenqiao.mvp.IPresenter
@@ -20,9 +21,12 @@ abstract class BaseFragment<out P : BasePresenter<BaseFragment<P>>> : IMvpView<P
 
     override val presenter: P
 
+    val TAG: String
     init {
         presenter = createPresenter()
         presenter.view = this
+        TAG = "BaseFragment"
+
     }
 
     private fun createPresenterKt(): P {
@@ -40,6 +44,8 @@ abstract class BaseFragment<out P : BasePresenter<BaseFragment<P>>> : IMvpView<P
             return it.type!!.jvmErasure.primaryConstructor!!.call() as P
         }
     }
+
+
 
     private fun createPresenter(): P {
         sequence<Type> {
