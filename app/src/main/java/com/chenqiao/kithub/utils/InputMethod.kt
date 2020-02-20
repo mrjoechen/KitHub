@@ -4,7 +4,6 @@ import android.app.Activity
 import android.content.Context
 import android.view.View
 import android.view.inputmethod.InputMethodManager
-import org.jetbrains.anko.inputMethodManager
 
 /**
  * Created by chenqiao on 2020-01-25.
@@ -13,11 +12,11 @@ import org.jetbrains.anko.inputMethodManager
 
 
 fun Context.toggleSoftInput() {
-    inputMethodManager.toggleSoftInput(0, InputMethodManager.HIDE_NOT_ALWAYS)
+    (getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager).toggleSoftInput(0, InputMethodManager.HIDE_NOT_ALWAYS)
 }
 
 fun View.showSoftInput(): Boolean {
-    return context.inputMethodManager.showSoftInput(this, InputMethodManager.SHOW_FORCED)
+    return (context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager).showSoftInput(this, InputMethodManager.SHOW_FORCED)
 }
 
 fun Activity.showSoftInput(): Boolean {
@@ -25,7 +24,7 @@ fun Activity.showSoftInput(): Boolean {
 }
 
 fun View.hideSoftInput(): Boolean {
-    return context.inputMethodManager.hideSoftInputFromWindow(windowToken, 0)
+    return (context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager).hideSoftInputFromWindow(windowToken, 0)
 }
 
 fun Activity.hideSoftInput(): Boolean {
@@ -33,5 +32,5 @@ fun Activity.hideSoftInput(): Boolean {
 }
 
 fun Context.isActive(): Boolean {
-    return inputMethodManager.isActive
+    return (getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager).isActive
 }

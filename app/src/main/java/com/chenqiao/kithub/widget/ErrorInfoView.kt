@@ -4,31 +4,31 @@ import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
 import android.graphics.Color
 import android.view.ViewGroup
+import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.annotation.StringRes
-import org.jetbrains.anko.*
+import com.chenqiao.common.ext.dip
 
 
-class ErrorInfoView(val parentView: ViewGroup) : _RelativeLayout(parentView.context) {
+class ErrorInfoView(val parentView: ViewGroup):RelativeLayout(parentView.context){
 
-    private var textView: TextView
+
+    private var textView: TextView = TextView(parentView.context)
+
+    init {
+        setBackgroundColor(Color.WHITE)
+        textView.textSize = 18f
+        textView.setPadding(dip(5),dip(5),dip(5),dip(5))
+        textView.setTextColor(Color.BLACK)
+        textView.layoutParams = LayoutParams(width, height).apply { addRule(CENTER_IN_PARENT) }
+
+    }
 
     var isShowing = false
 
-    init {
-        backgroundColor = Color.WHITE
-        textView = textView {
-            textSize = 18f
-            textColor = Color.BLACK
-            padding = dip(5)
-        }.lparams {
-            centerInParent()
-        }
-    }
-
     fun show(text: String) {
         if (!isShowing) {
-            parentView.addView(this, matchParent, matchParent)
+            parentView.addView(this, LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT)
             alpha = 0f
             animate().alpha(1f).setDuration(100).start()
             isShowing = true
@@ -52,4 +52,5 @@ class ErrorInfoView(val parentView: ViewGroup) : _RelativeLayout(parentView.cont
     fun show(@StringRes textRes: Int) {
         show(context.getString(textRes))
     }
+
 }

@@ -7,9 +7,9 @@ import android.view.ViewGroup
 import androidx.annotation.LayoutRes
 import androidx.core.view.ViewCompat
 import androidx.recyclerview.widget.RecyclerView
+import com.chenqiao.common.ext.dip
 import com.chenqiao.kithub.R
 import kotlinx.android.synthetic.main.item_card.view.*
-import org.jetbrains.anko.dip
 
 /**
  * Created by chenqiao on 2020-02-05.
