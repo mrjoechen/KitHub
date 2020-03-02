@@ -54,6 +54,12 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+        }
+    }
+
 }
 
 dependencies {
@@ -111,5 +117,10 @@ dependencies {
     api "com.bennyhuo.tieguanyin:tieguanyin-annotations:2.0-beta4"
     api "com.bennyhuo.tieguanyin:tieguanyin-runtime:2.0-beta4"
     kapt "com.bennyhuo.tieguanyin:tieguanyin-compiler:2.0-beta4"
+
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.2'
+    implementation 'com.github.markzhai:blockcanary-android:1.5.0'
+    debugImplementation 'com.github.markzhai:blockcanary-android:1.5.0'
+    releaseImplementation 'com.github.markzhai:blockcanary-no-op:1.5.0'
 
 }

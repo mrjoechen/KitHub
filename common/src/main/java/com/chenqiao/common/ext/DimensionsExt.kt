@@ -4,10 +4,10 @@ package com.chenqiao.common.ext
  * Created by chenqiao on 2020-02-21.
  * e-mail : mrjctech@gmail.com
  */
-import android.app.Fragment
 import android.content.Context
 import android.view.View
 import androidx.annotation.DimenRes
+import androidx.fragment.app.Fragment
 
 const val LDPI: Int = android.util.DisplayMetrics.DENSITY_LOW
 const val MDPI: Int = android.util.DisplayMetrics.DENSITY_MEDIUM
@@ -45,10 +45,10 @@ inline fun View.px2sp(px: Int): Float = context.px2sp(px)
 inline fun View.dimen(@DimenRes resource: Int): Int = context.dimen(resource)
 
 //the same for Fragments
-inline fun Fragment.dip(value: Int): Int = activity.dip(value)
-inline fun Fragment.dip(value: Float): Int = activity.dip(value)
-inline fun Fragment.sp(value: Int): Int = activity.sp(value)
-inline fun Fragment.sp(value: Float): Int = activity.sp(value)
-inline fun Fragment.px2dip(px: Int): Float = activity.px2dip(px)
-inline fun Fragment.px2sp(px: Int): Float = activity.px2sp(px)
-inline fun Fragment.dimen(@DimenRes resource: Int): Int = activity.dimen(resource)
+inline fun Fragment.dip(value: Int): Int = activity!!.dip(value)
+inline fun Fragment.dip(value: Float): Int = activity!!.dip(value)
+inline fun Fragment.sp(value: Int): Int = activity!!.sp(value)
+inline fun Fragment.sp(value: Float): Int = activity!!.sp(value)
+inline fun Fragment.px2dip(px: Int): Float = activity!!.px2dip(px)
+inline fun Fragment.px2sp(px: Int): Float = activity!!.px2sp(px)
+inline fun Fragment.dimen(@DimenRes resource: Int): Int = activity!!.dimen(resource)
