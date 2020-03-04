@@ -1,4 +1,5 @@
 def localPropertiesFile = new File(rootDir, "debug.properties")
+if (!localPropertiesFile.exists()) return
 def properties = new Properties()
 properties.load(new FileInputStream(localPropertiesFile))
 def propertyNames = properties.propertyNames()
